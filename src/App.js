@@ -1,22 +1,33 @@
 import './App.css';
 import {BrowserRouter, Routes,Route} from   "react-router-dom";
-import Home from './Pages/Home';
-import Users from './Pages/Users';
-import Contact from './Pages/Contact';
-import Menu from './components/Menu';
-import UsersDetail from './Pages/UsersDetail';
+import Home from './Pages/Dashboard/Home';
+import Users from './Pages/Dashboard/Users';
+import Contact from './Pages/Dashboard/Contact';
+import UsersDetail from './Pages/Dashboard/UsersDetail';
+import Login from './Pages/Auth/Login';
+import DashboardLayout from './components/layouts/Dashboard';
+import AuthLayout from './components/layouts/Auth';
+import Register from './Pages/Auth/Register';
 
 function App() {
   return (
   <BrowserRouter>
-  <Menu/>
+
   <Routes>
+
+  <Route path='/' element={<DashboardLayout/>}>
 
    <Route index element={<Home/>}/>
    <Route path='users' element={<Users/>}/>
-    <Route path='users/:id' element={<UsersDetail/>}/> 
+   <Route path='users/:id' element={<UsersDetail/>}/> 
    <Route path='contact' element={<Contact/>}/>
 
+  </Route>
+  <Route path='auth' element={<AuthLayout/>}>
+
+  <Route index element={<Login/>}/>
+  <Route path='register' element={<Register/>}/>
+  </Route>
   </Routes>
   
   </BrowserRouter>
