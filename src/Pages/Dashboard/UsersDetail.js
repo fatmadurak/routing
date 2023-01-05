@@ -29,7 +29,7 @@ function UsersDetail() {
            
         }
 
-       <Link to={`/users/${Number(id)+1}`}>Sonraki Kullanıcı Detayları</Link>
+      
 
     </div>
   )
