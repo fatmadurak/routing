@@ -11,8 +11,8 @@ function Contact() {
       email: '',
       message:"",
     },
-    onSubmit:(values) => {
-
+    onSubmit:async(values) => {
+      await new Promise((r)=>setTimeout(r,1000)) 
       console.log(values)
     }
 
@@ -53,7 +53,7 @@ function Contact() {
           onChange={formik.handleChange("message")}
            />
           </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={formik.isSubmitting}>Submit</button>
       </form>
 
   
