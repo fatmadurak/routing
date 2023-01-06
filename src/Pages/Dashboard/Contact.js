@@ -1,36 +1,37 @@
 import React from 'react'
-import { Formik } from 'formik';
+import {useFormik} from 'formik';
 
 function Contact() {
+
+  const formik=useFormik({
+
+    initialValues:{
+      firstName: '',
+      lastName: '',
+      email: '',
+      message:"",
+    },
+    onSubmit:(values) => {
+
+      console.log(values)
+    }
+
+})
   return (
     <div>
 
      <h1>İletişim</h1>
-     <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        message:"",
-      }}
-      onSubmit={async (values) => {
- 
-        console.log(values)
-      }}
-    >
-    {
-    
-    (({handleSubmit,handleChange})=>(
 
-      <form onSubmit={handleSubmit} className="form">
+
+      <form onSubmit={formik.handleSubmit} className="form">
         <div>
         <label htmlFor="firstName">First Name</label>
-        <input id="firstName" name="firstName" placeholder="Jane"  onChange={handleChange("firstName")}/>
+        <input id="firstName" name="firstName" placeholder="Jane"  onChange={formik.handleChange("firstName")}/>
         </div>
 
      <div>
      <label htmlFor="lastName">Last Name</label>
-        <input id="lastName" name="lastName" placeholder="Doe"  onChange={handleChange("lastName")}/>
+        <input id="lastName" name="lastName" placeholder="Doe"  onChange={formik.handleChange("lastName")}/>
      </div>
       <div>
   
@@ -40,7 +41,7 @@ function Contact() {
           name="email"
           placeholder="jane@acme.com"
           type="email"
-          onChange={handleChange("email")}
+          onChange={formik.handleChange("email")}
         />
        </div>
          <div>
@@ -49,22 +50,13 @@ function Contact() {
           id="message"
           name="message"
           placeholder="Your message..."
-          onChange={handleChange("message")}
+          onChange={formik.handleChange("message")}
            />
           </div>
         <button type="submit">Submit</button>
       </form>
 
-     ))
-
-
-
-
-
-
-    }
-    </Formik>
-
+  
     </div>
   )
 }
